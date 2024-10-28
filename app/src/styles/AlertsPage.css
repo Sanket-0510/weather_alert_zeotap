@@ -1,0 +1,31 @@
+.alerts-page {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.alerts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.alert-card {
+  background-color: #f7f7f7;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.alert-card h3 {
+  margin: 0 0 10px;
+}
+
+.alert-card p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.alert-card strong {
+  color: #555;
+}

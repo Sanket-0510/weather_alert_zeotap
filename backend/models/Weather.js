@@ -1,27 +1,30 @@
 const { DataTypes } = require('sequelize');
-const { sequelize } = require('../config/sequelize');
+const sequelize = require('../config/sequelize.js'); // Assuming you have a config for sequelize
 
-const Weather = sequelize.define('Weather', {
+const WeatherData = sequelize.define('WeatherData', {
   city: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
-  temp: {
-    type: DataTypes.FLOAT,
-    allowNull: false
+  date: {
+    type: DataTypes.DATEONLY,  // Stores just the date (YYYY-MM-DD)
+    allowNull: false,
+  },
+  temperature: {
+    type: DataTypes.FLOAT,  // For real-time temperature values
   },
   feels_like: {
-    type: DataTypes.FLOAT,
-    allowNull: false
+    type: DataTypes.FLOAT,  // For real-time 'feels like' temperature
   },
-  main: {
-    type: DataTypes.STRING,
-    allowNull: false
+  weather_main: {
+    type: DataTypes.STRING,  // Main weather condition (e.g., 'Clear', 'Clouds')
   },
-  dt: {
-    type: DataTypes.BIGINT,
-    allowNull: false
+  timestamp: {
+    type: DataTypes.INTEGER,  // UNIX timestamp for real-time data
   }
+}, {
+  timestamps: true,  // Automatically manage createdAt and updatedAt fields
+  tableName: 'weather_data'
 });
 
-module.exports = Weather;
+module.exports = WeatherData;

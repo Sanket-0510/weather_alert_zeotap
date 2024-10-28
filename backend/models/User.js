@@ -1,6 +1,7 @@
+const sequelize = require('../config/sequelize.js');
+const { DataTypes } = require('sequelize');
 
-module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define('User', {
+const User = sequelize.define('User', {
       username: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -15,8 +16,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      alerts : {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: true,
+      },
+    },  {
+      timestamps: true,  // Automatically manage createdAt and updatedAt fields
+      tableName: 'users'
     });
   
-    return User;
-  };
-  
+module.exports = User;

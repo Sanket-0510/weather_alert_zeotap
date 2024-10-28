@@ -1,13 +1,16 @@
 // middleware/authMiddleware.js
 const jwt = require('jsonwebtoken');
-const { User } = require('../models/User.js');
+const  User = require('../models/User.js');
 
 const JWT_SECRET = 'wheather_secrete_key';
 
 // Middleware to protect routes
-exports.authenticate = async (req, res, next) => {
-  const token = req.header('Authorization').replace('Bearer ', '');
-
+const authenticate = async (req, res, next) => {
+  let token = req.header('Authorization') || req.body.token;
+  console.log(token)
+  token = token ? token.replace('Bearer ', '') : null;
+  
+  console.log(token)
   if (!token) {
     return res.status(401).json({ error: 'Access denied, no token provided' });
   }
@@ -20,3 +23,5 @@ exports.authenticate = async (req, res, next) => {
     res.status(401).json({ error: 'Invalid token' });
   }
 };
+
+module.exports = authenticate;

@@ -1,51 +1,33 @@
-import React, { createContext, useReducer, useEffect } from 'react';
-import { getWeatherData, getDailySummaries, getAlerts } from '../services/weatherService';
+// import React, { createContext, useState, useEffect } from 'react';
+// import { getWeatherData, getDailySummaries, getAlerts } from '../services/weatherService';
 
-const WeatherContext = createContext();
+// const WeatherContext = createContext();
 
-const initialState = {
-  weatherData: [],
-  dailySummaries: [],
-  alerts: [],
-  threshold: 35, // Default threshold
-};
+// const WeatherProvider = ({ children }) => {
+//   const [weatherData, setWeatherData] = useState([]);
+//   const [dailySummaries, setDailySummaries] = useState([]);
+//   const [alerts, setAlerts] = useState([]);
+//   const [threshold, setThreshold] = useState(35); // Default threshold
 
-const weatherReducer = (state, action) => {
-  switch (action.type) {
-    case 'SET_WEATHER_DATA':
-      return { ...state, weatherData: action.payload };
-    case 'SET_SUMMARIES':
-      return { ...state, dailySummaries: action.payload };
-    case 'SET_ALERTS':
-      return { ...state, alerts: action.payload };
-    case 'SET_THRESHOLD':
-      return { ...state, threshold: action.payload };
-    default:
-      return state;
-  }
-};
+//   useEffect(() => {
+//     async function fetchData() {
+//       const weather = await getWeatherData();
+//       const summaries = await getDailySummaries();
+//       const alertData = await getAlerts();
+      
+//       setWeatherData(weather);
+//       setDailySummaries(summaries);
+//       setAlerts(alertData);
+//     }
 
-const WeatherProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(weatherReducer, initialState);
+//     fetchData();
+//   }, []);
 
-  useEffect(() => {
-    async function fetchData() {
-      const weather = await getWeatherData();
-      const summaries = await getDailySummaries();
-      const alerts = await getAlerts();
-      dispatch({ type: 'SET_WEATHER_DATA', payload: weather });
-      dispatch({ type: 'SET_SUMMARIES', payload: summaries });
-      dispatch({ type: 'SET_ALERTS', payload: alerts });
-    }
+//   return (
+//     <WeatherContext.Provider value={{ weatherData, dailySummaries, alerts, threshold, setThreshold }}>
+//       {children}
+//     </WeatherContext.Provider>
+//   );
+// };
 
-    fetchData();
-  }, []);
-
-  return (
-    <WeatherContext.Provider value={{ state, dispatch }}>
-      {children}
-    </WeatherContext.Provider>
-  );
-};
-
-export { WeatherContext, WeatherProvider };
+// export { WeatherContext, WeatherProvider };

@@ -1,33 +1,19 @@
+// src/services/apiService.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000'; // Adjust the URL to your backend
+const API_URL = process.env.REACT_APP_URL;  // This is your backend server URL
 
-export const getWeatherData = async () => {
-  try {
-    const response = await axios.get(`${API_URL}/weather`);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching weather data:', error);
-    return [];
-  }
+export const fetchWeatherData = async () => {
+  const response = await axios.get(`${API_URL}/weather`);
+  return response.data;
 };
 
-export const getDailySummaries = async () => {
-  try {
-    const response = await axios.get(`${API_URL}/summaries`);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching summaries:', error);
-    return [];
-  }
+export const fetchDailySummaries = async () => {
+  const response = await axios.get(`${API_URL}/summaries`);
+  return response.data;
 };
 
-export const getAlerts = async () => {
-  try {
-    const response = await axios.get(`${API_URL}/alerts`);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching alerts:', error);
-    return [];
-  }
+export const fetchAlerts = async () => {
+  const response = await axios.get(`${API_URL}/alerts`);
+  return response.data;
 };

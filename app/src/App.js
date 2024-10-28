@@ -1,23 +1,30 @@
 import React from 'react';
-import { WeatherProvider } from './context/WeatherContext';
+import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
+
+import Login from './components/Login';
+import Register from './components/Register';
+import Dashboard from './components/Dashboard'; 
 import WeatherDisplay from './components/WeatherDisplay';
-import WeatherSummary from './components/WeatherSummary';
-import Alerts from './components/Alerts';
-import ThresholdConfig from './components/ThresholdConfig';
-import HistoricalChart from './components/HistoricalChart';
+import ProfileSettings from './components/ProfileSettings';
+import AlertsPage from './components/AlertsPage';
 
 const App = () => {
   return (
-    <WeatherProvider>
-      <div>
-        <WeatherDisplay />
-        <WeatherSummary />
-        <Alerts />
-        <ThresholdConfig />
-        <HistoricalChart />
-      </div>
-    </WeatherProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/weather/:city" element={<WeatherDisplay />} />
+        <Route path="/profile" element={<ProfileSettings />} />
+        <Route path="*" element={<Navigate to="/login" />} />
+        <Route path='/alerts' element={<AlertsPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
+
+// PrivateRoute component to protect weather pages
 
 export default App;

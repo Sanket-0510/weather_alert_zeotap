@@ -1,29 +1,33 @@
 // controllers/authController.js
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { User } = require('../models');
+const  User  = require('../models/User.js');
 
 
 const JWT_SECRET = 'wheather_secrete_key';
 
 
 
-exports.register = async (req, res) => {
-    const { username, email, password } = req.body;
+const register = async (req, res) => {
+    console.log(req.body);
+    const { name, email, password } = req.body;
     
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
-      const user = await User.create({ username, email, password: hashedPassword });
+      console.log(hashedPassword)
+      const user = await User.create({ username:name, email:email, password: hashedPassword });
+      console.log(user);  
       
       res.status(201).json({ message: 'User registered successfully!' });
     } catch (error) {
+      console.log(error);
       res.status(400).json({ error: 'Error registering user' });
     }
   };
   
 
 // Login User
-exports.login = async (req, res) => {
+const login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -48,7 +52,5 @@ exports.login = async (req, res) => {
   }
 };
 
-// Protected Route (Example)
-exports.protected = (req, res) => {
-  res.json({ message: 'You have accessed a protected route', user: req.user });
-};
+
+module.exports = { register, login };

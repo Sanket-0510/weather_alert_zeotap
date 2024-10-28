@@ -1,0 +1,51 @@
+/* Navbar.css */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4CAF50; 
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.navbar-brand h1 {
+    color: white;
+    margin: 0; 
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex; 
+    gap: 1.5rem; 
+    margin: 0;
+    padding: 0; 
+}
+
+.navbar-links li {
+    /* Each link's styles */
+}
+
+.navbar-links a {
+    color: white; 
+    text-decoration: none;
+    transition: color 0.3s; 
+}
+
+.navbar-links a:hover {
+    color: #f0e68c; 
+    text-decoration: underline; 
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; 
+        align-items: flex-start;
+    }
+    
+    .navbar-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

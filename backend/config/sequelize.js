@@ -6,4 +6,4 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
   dialect: 'postgres',
 });
 
-module.exports = { sequelize };
+module.exports = sequelize;

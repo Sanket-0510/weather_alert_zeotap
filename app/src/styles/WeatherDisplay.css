@@ -1,0 +1,17 @@
+.weather-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .weather-title {
+    font-size: 1.8em;
+    font-weight: bold;
+  }
+  
+  .weather-info {
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+  

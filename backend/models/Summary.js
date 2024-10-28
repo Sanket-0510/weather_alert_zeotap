@@ -1,31 +1,27 @@
 const { DataTypes } = require('sequelize');
-const { sequelize } = require('../config/sequelize');
+const sequelize = require('../config/sequelize.js');
 
 const Summary = sequelize.define('Summary', {
-  city: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  date: {
-    type: DataTypes.DATEONLY,
-    allowNull: false
-  },
-  avg_temp: {
-    type: DataTypes.FLOAT,
-    allowNull: false
-  },
-  max_temp: {
-    type: DataTypes.FLOAT,
-    allowNull: false
-  },
-  min_temp: {
-    type: DataTypes.FLOAT,
-    allowNull: false
-  },
-  dominant_condition: {
-    type: DataTypes.STRING,
-    allowNull: false
-  }
-});
+    date: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+    },
+    city: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    avg_temp: {
+        type: DataTypes.FLOAT,
+    },
+    min_temp: {
+        type: DataTypes.FLOAT,
+    },
+    max_temp: {
+        type: DataTypes.FLOAT,
+    },
+    }, {
+    timestamps: true,
+    tableName: 'summaries',
+    });
 
 module.exports = Summary;

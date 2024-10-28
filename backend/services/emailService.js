@@ -12,12 +12,12 @@ const transporter = nodemailer.createTransport({
 });
 
 // Send alert email
-const sendAlertEmail = async (recipientEmail, subject, text) => {
+const sendEmailAlert = async(recipientEmail, city, parameter, currentParameterValue) => {
   const mailOptions = {
     from: process.env.SMTP_USER,
     to: recipientEmail,
-    subject: subject,
-    text: text,
+    subject: "alert for the threshold breach",
+    text: `${parameter} threshold breached and has crossed the value of ${currentParameterValue} in ${city}`,
   };
 
   try {
@@ -28,4 +28,4 @@ const sendAlertEmail = async (recipientEmail, subject, text) => {
   }
 };
 
-module.exports = { sendAlertEmail };
+module.exports = { sendEmailAlert };
